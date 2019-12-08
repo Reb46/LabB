@@ -103,6 +103,7 @@ CREATE TABLE public."User"
     "Surname" character varying(30) COLLATE pg_catalog."default" NOT NULL,
     "Password" character varying(30) COLLATE pg_catalog."default" NOT NULL,
     "Nickname" character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    "isAdmin" "char" NOT NULL,
     CONSTRAINT "User_pkey" PRIMARY KEY ("Email"),
     CONSTRAINT "Nickname" UNIQUE ("Nickname")
 
