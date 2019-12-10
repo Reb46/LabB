@@ -35,7 +35,7 @@ CREATE TABLE public."MatchHistory"
     "PointsEarned" smallint NOT NULL,
     "LostPoints" smallint NOT NULL,
     "MancheNumber" integer NOT NULL,
-    CONSTRAINT "MatchHistory_pkey" PRIMARY KEY ("IDMatch"),
+    CONSTRAINT "MatchHistory_pkey" PRIMARY KEY ("IDMatch", "Player"),
     CONSTRAINT "IDMatch" FOREIGN KEY ("IDMatch")
         REFERENCES public."Match" ("IDMatch") MATCH SIMPLE
         ON UPDATE CASCADE
@@ -46,6 +46,8 @@ TABLESPACE pg_default;
 
 ALTER TABLE public."MatchHistory"
     OWNER to postgres;
+
+
 
 
 -- Table: public."Participate"
