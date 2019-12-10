@@ -1,0 +1,143 @@
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('Il cavallo bianco di Napoleone', 'Che bestia montava Napoleone? Che colore era?');
+
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('La Ferrari è rossa' , 'automobile italiana avente come simbolo un cavallo');
+
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('porta' , 'si usa per segnare un gol');
+
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('pikachu' , 'topo giallo mascotte dei pokèmon');
+
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('pippo' , 'è amico di Topolino');
+
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('pgadmin4' , 'è il software utilizzato per creare il database');
+
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('super mario bros' , 'classico gioco degli anni 80 con idraulico');
+
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('il diavolo della tasmania' , 'che animale è Taz per la Warner Bros?');
+
+INSERT INTO public."Sentence" (
+"Sentence", "Theme")
+VALUES ('la pizza con l ananas', 'pizza con un frutto odiata da tutti');
+
+INSERT INTO public."User" (
+
+    "Email" , "Name" , "Surname", "Password", "Nickname", "isAdmin")
+
+VALUES ('paolo.bossi@gmail.com', 'Paolo', 'Bossi', 'paolo96', 'PAB', 'n');
+
+INSERT INTO public."User" (
+
+    "Email" , "Name" , "Surname", "Password", "Nickname", "isAdmin")
+
+VALUES ('michela.vendramin@gmail.com', 'Michela', 'Vendramin', 'MichiTortuga', 'MV', 'n');
+
+INSERT INTO public."User" (
+
+    "Email" , "Name" , "Surname", "Password", "Nickname", "isAdmin")
+
+VALUES ('alberto.benatti@gmail.com', 'Alberto', 'Benatti', 'SuperAlby', 'SuperAlby', 'n');
+
+INSERT INTO public."User" (
+
+    "Email" , "Name" , "Surname", "Password", "Nickname", "isAdmin")
+
+VALUES ('roberto.bernasconi@gmail.com', 'Roberto', 'Bernasconi', 'Reb46', 'REB46', 'n');
+
+INSERT INTO public."User"(
+	"Email", "Name", "Surname", "Password", "Nickname", "isAdmin")
+	VALUES ('filiberto@gmail.com', 'Filiberto', 'Marelli', 'FiloFilo', 'FiloMare', 'n');
+
+
+INSERT INTO public."Match"(
+	"IDMatch", "Date", "Name", "MatchState", "Sentence")
+	VALUES (1, '2019-12-10 16:10:00', 'partita1', 'f', 'Il cavallo bianco di Napoleone');
+
+INSERT INTO public."Match"(
+	"IDMatch", "Date", "Name", "MatchState", "Sentence")
+	VALUES (2, '2019-12-09 13:00:00', 'partita2', 'f', 'La Ferrari è rossa');
+
+INSERT INTO public."Match"(
+	"IDMatch", "Date", "Name", "MatchState", "Sentence")
+	VALUES (3, '2019-12-08 09:30:00', 'partita3', 'o', 'porta');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('filiberto@gmail.com', 2, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('filiberto@gmail.com', 2, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('filiberto@gmail.com', 4, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('paolo.bossi@gmail.com', 4, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('michela.vendramin@gmail.com', 4, 'P');
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Move", "PointsEarned", "LostPoints", "MancheNumber", "Player")
+	VALUES (1, 'solution', 8000, 300, 1, 'filiberto@gmail.com');
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Move", "PointsEarned", "LostPoints", "MancheNumber", "Player")
+	VALUES (1, 'consonant', '300', '2000', 1, 'paolo.bossi@gmail.com');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('michela.vendramin@gmail.com', 1, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('michela.vendramin@gmail.com', 2, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('michela.vendramin@gmail.com', 1, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('alberto.benatti@gmail.com', 1, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('alberto.benatti@gmail.com', 2, 'P');
+
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('alberto.benatti@gmail.com', 3, 'P');
+
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('paolo.bossi@gmail.com', 3, 'P');
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('paolo.bossi@gmail.com', 4, 'P');
+
+
+INSERT INTO public."Participate"(
+	"Email", "IDMatch", "UserType")
+	VALUES ('michela.vendramin@gmail.com', 4, 'P');
