@@ -30,6 +30,7 @@ ALTER TABLE public."Match"
 CREATE TABLE public."MatchHistory"
 (
     "IDMatch" integer NOT NULL,
+    "Player" character varying(30) NOT NULL,
     "Move" character varying(10) COLLATE pg_catalog."default" NOT NULL,
     "PointsEarned" smallint NOT NULL,
     "LostPoints" smallint NOT NULL,
