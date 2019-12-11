@@ -35,7 +35,7 @@ CREATE TABLE public."MatchHistory"
     "PointsEarned" smallint NOT NULL,
     "LostPoints" smallint NOT NULL,
     "MancheNumber" integer NOT NULL,
-    CONSTRAINT "MatchHistory_pkey" PRIMARY KEY ("IDMatch", "Player"),
+    CONSTRAINT "MatchHistory_pkey" PRIMARY KEY ("IDMatch", "Player", "MancheNumber"),
     CONSTRAINT "IDMatch" FOREIGN KEY ("IDMatch")
         REFERENCES public."Match" ("IDMatch") MATCH SIMPLE
         ON UPDATE CASCADE
