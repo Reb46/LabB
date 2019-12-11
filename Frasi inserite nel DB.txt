@@ -95,14 +95,6 @@ INSERT INTO public."Participate"(
 	"Email", "IDMatch", "UserType")
 	VALUES ('michela.vendramin@gmail.com', 4, 'P');
 
-INSERT INTO public."MatchHistory"(
-	"IDMatch", "Move", "PointsEarned", "LostPoints", "MancheNumber", "Player")
-	VALUES (1, 'solution', 8000, 300, 1, 'filiberto@gmail.com');
-
-INSERT INTO public."MatchHistory"(
-	"IDMatch", "Move", "PointsEarned", "LostPoints", "MancheNumber", "Player")
-	VALUES (1, 'consonant', '300', '2000', 1, 'paolo.bossi@gmail.com');
-
 INSERT INTO public."Participate"(
 	"Email", "IDMatch", "UserType")
 	VALUES ('michela.vendramin@gmail.com', 1, 'P');
@@ -141,3 +133,155 @@ INSERT INTO public."Participate"(
 INSERT INTO public."Participate"(
 	"Email", "IDMatch", "UserType")
 	VALUES ('michela.vendramin@gmail.com', 4, 'P');
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'paolo.bossi@gmail.com', 'consonant', 300, 0, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'paolo.bossi@gmail.com', 'consonant', 600, 0, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'paolo.bossi@gmail.com', 'consonant', 400, 0, 3);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'paolo.bossi@gmail.com', 'jolly', 0, 0, 4);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'paolo.bossi@gmail.com', 'consonant', 700, 0, 5);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'michela.vendramin@gmail.com', 'consonant', 500, 0, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'michela.vendramin@gmail.com', 'consonant', 1000, 0, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'michela.vendramin@gmail.com', 'vowel', 0, 1000, 3);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'michela.vendramin@gmail.com', 'consonant', 400, 0, 4);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'michela.vendramin@gmail.com', 'lose', 0, 900, 5);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'alberto.benatti@gmail.com', 'consonant', 600, 600, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'alberto.benatti@gmail.com', 'consonant', 800, 0, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'alberto.benatti@gmail.com', 'solution', 0, 0, 3);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'alberto.benatti@gmail.com', 'lose', 0, 800, 4);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (1, 'alberto.benatti@gmail.com', 'solution', 500, 0, 5);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'michela.vendramin@gmail.com', 'consonant', 600, 0, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'michela.vendramin@gmail.com', 'leave', 0, 0, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'michela.vendramin@gmail.com', 'consonant', 700, 0, 3);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'michela.vendramin@gmail.com', 'vowel', 0, 1000, 4);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'michela.vendramin@gmail.com', 'consonant', 300, 0, 5);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'alberto.benatti@gmail.com', 'consonant', 500, 0, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'alberto.benatti@gmail.com', 'consonant', 1500, 0, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'alberto.benatti@gmail.com', 'leave', 0, 0, 3);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'alberto.benatti@gmail.com', 'jolly', 0, 0, 4);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'alberto.benatti@gmail.com', 'solution', 900, 0, 5);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'filiberto@gmail.com', 'consonant', 600, 0, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'filiberto@gmail.com', 'lose', 0, 600, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'filiberto@gmail.com', 'consonant', 2000, 0, 3);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (2, 'filiberto@gmail.com', 'vowel', 0, 1000, 4);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'alberto.benatti@gmail.com', 'consonant', 400, 0, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'alberto.benatti@gmail.com', 'consonant', 700, 0, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'alberto.benatti@gmail.com', 'jolly', 0, 0, 3);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'paolo.bossi@gmail.com', 'consonant', 1000, 0, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'paolo.bossi@gmail.com', 'consonant', 1200, 0, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'paolo.bossi@gmail.com', 'vowel', 0, 1000, 3);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'roberto.bernasconi@gmail.com', 'consonant', 800, 0, 1);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'roberto.bernasconi@gmail.com', 'consonant', 2500, 0, 2);
+
+INSERT INTO public."MatchHistory"(
+	"IDMatch", "Player", "Move", "PointsEarned", "LostPoints", "MancheNumber")
+	VALUES (3, 'roberto.bernasconi@gmail.com', 'solution', 700, 0, 3);
