@@ -1,50 +1,17 @@
 public class Move {
     private String move;
+    private PlayerRdF player;
+    //private int points;
 
-    public Move(String m) { //costruttore
-        switch (m) {
-            case "buy":
-                move = "buyVowel";
-                buyVowel();
-                break;
-
-            case "callC":
-                move = "callC";
-                callConsonant();
-                break;
-
-            case "callS":
-                move = "callS";
-                callSolution();
-                break;
-
-            case "jolly":
-                move = "jolly";
-                useJolly();
-                break;
-        }
+    public Move(Round current, String m) { //costruttore
+        player = current.getCurrentPlayer();
+        move = m;
+        //points = pointsChange; serve?
     }
+
+    //metodi per ottenere info per statistiche?
 
     public String getMove() {
         return move;
     }
-
-    private void buyVowel(){
-        //effetto
-    }
-
-    private void callConsonant(){
-        //effetto
-    }
-
-    private void callSolution(){
-        //effetto
-    }
-
-    private void useJolly(){
-        //effetto
-    }
-
-
-
 }

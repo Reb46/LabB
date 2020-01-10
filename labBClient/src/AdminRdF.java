@@ -15,6 +15,6 @@ public class AdminRdF implements User{
     }
 
     private void analyseGameStats(){
-        //
+         //TODO funziona con il DB
     }
 }
