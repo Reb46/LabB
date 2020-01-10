@@ -1,27 +1,46 @@
+import java.util.ArrayList;
+
 public class Game {
     private int startingPlayer = (int) Math.floor((Math.random()*3) % 3); //0, 1 o 2, posizione nell'array giocatori
     private int currentRound = 0;
     private Boolean over = false; //solo per controllo se una partita è in corso o no (per osservatori)
     private PlayerRdF[] arrayPlayers = new PlayerRdF[3];
     private Round[] arrayRound = new Round[5];
-    private Boolean[] arrayJoly = new Boolean[3];
+    private Boolean[] arrayJolly = new Boolean[3];
+    private int[] arrayScore = new int[3];
+    private ArrayList<Move> arrayMoves = new ArrayList<>();
 
     public Game(){
-
-
-        //qui scelta frasi?
+        //qui scelta frasi ?
         for (int i = 0; i < 5; i++){
-            arrayRound[i] = new Round(i);
+            arrayRound[i] = new Round(i, this);
         }
         arrayRound[0].setFirstPlayer(startingPlayer);
-
-        for (int i = 0; i < 5; i++){
-            //arrayRound[i].play();
+        arrayRound[0].play();
         }
-        over = true;
 
+
+    void nextRound(){
+        currentRound++;
+        if (currentRound < 5) {
+            arrayRound[currentRound].play();
+        } else {
+            over = true; //partita finita, TODO: aggiungere eventi di fine partita
+            //winner, scores
+        }
     }
 
+    void addMoveToArray(String move){
+        arrayMoves.add(new Move(this.arrayRound[currentRound], move));
+    }
+
+    void addJolly(int player){
+        arrayJolly[player] = true;
+    }
+
+    void increasePoints(int playerNumber, int points){
+        arrayScore[playerNumber] += points;
+    }
     /*logica della partita:
     1) determinare casualmente giocatore iniziale (poi a rotazione)
     2) mostrare lettere frase e tema

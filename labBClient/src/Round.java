@@ -1,30 +1,40 @@
-public class Round {
+class Round {
     private String SecretSentence;
     private int currentPlayer;
     private int roundNumber;
     private boolean over;
     private int[] arrayScore = new int[3];
     private PlayerRdF[] arrayPlayers = new PlayerRdF[3];
+    private Game game;
 
-    public Round(int n){
-        roundNumber = n;
+    Round(int n, Game currentGame){
+        game = currentGame;
+        roundNumber = n; //serve?
         over = false;
         for (int i = 0; i < 3; i++){
-            arrayScore[i] = 0; //inizializzo gli score a 0
+            arrayScore[i] = 0; //inizializzo gli score a 0 - sono già a 0 di default? pensavo fossero null
         }
 
-        pickSecretSentence(); //?
+        setSecretSentence("prova"); //TODO ?
     }
 
-    private void play(){
+    void play() {
         while(!over){
-            //inserire un listener per l'UI che gestisce un oggetto di classe Round corrispondente
-            giraLaRuota(arrayPlayers[currentPlayer]);
-            //effetti della mossa
-
-
+            //TODO inserire un listener per l'UI che gestisce l'oggetto di classe Round corrispondente
+            switch (giraLaRuota(arrayPlayers[currentPlayer])){
+                case "Points": checkConsonant(); break; //fare con UI
+                case "Lose": removePlayerFromRound(currentPlayer); break;
+                case "Pass": break; //+check jolly
+                case "Jolly": game.addJolly(currentPlayer);
             }
-
+            //TODO azione successiva scelta dall'utente tramite UI
+            /*switch (azione)
+            * case vari
+            * ...
+            * checkSolution(guess) se indovina: aggiorna punti e over = true;
+            */
+            }
+        game.nextRound();
 
         }
             //currentPlayer = (currentPlayer + 1) % 3 <---passaggio di turno
@@ -45,7 +55,7 @@ public class Round {
     * */
 
 
-    public void setFirstPlayer(int n){
+    void setFirstPlayer(int n){
         currentPlayer = n;
     }
 
@@ -60,18 +70,27 @@ public class Round {
         return "Error";
     }
 
-    private void pickSecretSentence(){
-
+    void setSecretSentence(String sentence){
+        if (SecretSentence == null) {
+            SecretSentence = sentence;
+        }
     }
 
-    public int checkConsonant(){
+    private int checkConsonant(){
         int score = 0; //score 0 = no consonante, altrimenti calcolo punteggio
         //if (consonantePresente) score = punteggio * numero consonanti
         return score;
     }
 
-    public void checkSolution(String guess){
+    private void checkSolution(String guess){
         //if (SecretSentence == guess) win, end round
         // else pass
+    }
+
+    private void removePlayerFromRound(int player){
+        //TODO
+    }
+    PlayerRdF getCurrentPlayer(){
+        return arrayPlayers[currentPlayer];
     }
 }
