@@ -12,7 +12,7 @@ public class serverMain {
             registry.bind("Nome", stub);
             System.err.println("server pronto!");
 
-            non ho esplorato abbastanza roa per
+            
         }
         catch (Exception e) {
             System.err.println("Riscontrata eccezione: " + e.toString());
