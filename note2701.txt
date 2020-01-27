@@ -1,0 +1,9 @@
+da fare per interfaccia
+metodo per vocali
+metodo per passa
+metodo per girare la ruota
+metodo per jolly
+metodo per dare risposta
+
+metodo per quando sono finite le consonanti (alert nell'UI)
+
