@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 public class EmailSender{
 
-    public static void send_uninsubria_email(String usr, String pwd, String to, String subject, String body) throws SendFailedException, MessagingException{
+    public void send_uninsubria_email(String usr, String pwd, String to, String subject, String body) throws SendFailedException, MessagingException{
         String password = pwd;
         String username = usr;
 
@@ -39,7 +39,7 @@ public class EmailSender{
         System.out.println("\nMail was sent successfully.");
     }
 
-    public static void main(String[] argv) {
+    public EmailSender() {
         try {
             String password="";
             String username="";
@@ -65,7 +65,7 @@ public class EmailSender{
             int option = JOptionPane.showOptionDialog( null, message, "Send email",
                     JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,new String[]{"Send", "Cancel"}, "Send");
             if (option == JOptionPane.YES_OPTION){
-                password = new String( pf.getPassword());
+                password = new String(pf.getPassword());
                 username = new String(uf.getText());
                 to = new String(tf.getText());
                 subject = new String(sf.getText());
