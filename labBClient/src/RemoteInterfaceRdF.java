@@ -1,7 +1,7 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface InterfacciaRemotaRdF extends Remote {
+public interface RemoteInterfaceRdF extends Remote {
 
     //metodi remoti vanno qua
 
