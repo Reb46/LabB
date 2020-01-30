@@ -1,7 +1,7 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class clientMain {
+public class clientRdF {
 
     public static void main(String[] args){
         try {

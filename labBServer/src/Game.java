@@ -8,12 +8,16 @@ public class Game {
     private Round[] arrayRound = new Round[5];
     private Boolean[] arrayJolly = new Boolean[3];
     private int[] arrayScore = new int[3];
+    private MoveListener[] arrayListener = new MoveListener[3]; //per inviare mosse alla UI dei client
     private ArrayList<Move> arrayMoves = new ArrayList<>();
 
     public Game(){
-        //qui scelta frasi ?
+        //qui scelta frasi !
         for (int i = 0; i < 5; i++){
             arrayRound[i] = new Round(i, this);
+        }
+        for (int i = 0; i < 3; i++){
+            arrayListener[i] = new MoveListener(this, arrayPlayers[i]);
         }
         arrayRound[0].setFirstPlayer(startingPlayer);
         arrayRound[0].play();
