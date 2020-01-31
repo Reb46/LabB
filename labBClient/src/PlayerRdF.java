@@ -1,4 +1,6 @@
-public class PlayerRdF  implements User {
+import java.io.Serializable;
+
+public class PlayerRdF  extends UserRdF implements Serializable {
     private String name;
     private String surname;
     private String password;
@@ -18,4 +20,7 @@ public class PlayerRdF  implements User {
     //TODO funziona con l'UI
     }
 
+    public void addLogMessage(String message) {
+        //mostra message nel log
+    }
 }

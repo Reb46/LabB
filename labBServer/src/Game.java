@@ -1,3 +1,4 @@
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class Game {
@@ -11,13 +12,13 @@ public class Game {
     private MoveListener[] arrayListener = new MoveListener[3]; //per inviare mosse alla UI dei client
     private ArrayList<Move> arrayMoves = new ArrayList<>();
 
-    public Game(){
+    public Game() throws RemoteException {
         //qui scelta frasi !
         for (int i = 0; i < 5; i++){
             arrayRound[i] = new Round(i, this);
         }
         for (int i = 0; i < 3; i++){
-            arrayListener[i] = new MoveListener(this, arrayPlayers[i]);
+            arrayListener[i] = new MoveListener(arrayPlayers[i]);
         }
         arrayRound[0].setFirstPlayer(startingPlayer);
         arrayRound[0].play();
