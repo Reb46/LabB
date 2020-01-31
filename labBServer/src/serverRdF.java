@@ -1,19 +1,33 @@
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class serverRdF implements RemoteInterfaceRdF {
     RemoteInterfaceRdF stub;
     Registry registry;
 
+    ArrayList<MoveListener> arraylisttest = new ArrayList<>(); //test
+
     public static void main(String[] args) {
         serverRdF server = new serverRdF();
     }
 
-    @Override
+    /*@Override
     public void mostraMessaggio(String testo) throws RemoteException {
         System.out.println(testo);
+    }*/
+
+
+    //test
+    @Override
+    public void addListener(MoveListener test) throws RemoteException {
+        arraylisttest.add(test);
+        for (MoveListener testlistener : arraylisttest ) { //test
+            testlistener.makeAMove("ciao", new PlayerRdF());
+        }
     }
 
     private serverRdF(){

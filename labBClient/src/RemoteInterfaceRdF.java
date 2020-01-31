@@ -5,5 +5,7 @@ public interface RemoteInterfaceRdF extends Remote {
 
     //metodi remoti vanno qua
 
-    void mostraMessaggio(String testo) throws RemoteException; //metodo esempio
+    //void mostraMessaggio(String testo) throws RemoteException; //metodo esempio
+
+    void addListener(MoveListener test) throws RemoteException;
 }

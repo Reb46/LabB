@@ -1,4 +1,4 @@
-public class AdminRdF implements User{
+public class AdminRdF extends UserRdF {
     private String name;
     private String surname;
     private String password;
@@ -16,5 +16,9 @@ public class AdminRdF implements User{
 
     private void analyseGameStats(){
          //TODO funziona con il DB
+    }
+
+    public void addLogMessage(String message) {
+        //mostra message nel log
     }
 }

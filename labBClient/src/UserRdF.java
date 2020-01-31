@@ -1,4 +1,4 @@
-public interface User {
+public class UserRdF {
 
 
     /*
@@ -8,4 +8,7 @@ public interface User {
     resetPassword()
     modUser()
      */
+    void addLogMessage(String message){
+
+    }
 }
