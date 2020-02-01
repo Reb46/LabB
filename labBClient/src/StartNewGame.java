@@ -11,9 +11,8 @@ public class StartNewGame extends JFrame {
     private static Boolean checker = false;
 
     StartNewGame(){
-
+        super("Waiting for players");
         JFrame frame = this;
-        setTitle("Waiting for players");
 
         Button leave = new Button("Abandon the Lobby");
 
@@ -46,10 +45,9 @@ public class StartNewGame extends JFrame {
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
 
-                    //frame.dispatchEvent(new WindowEvent(frame, WindowEvent.)); //send alert to db
+                    //send alert to db
                     new LoggedInUI();
-                    frame.setVisible(false);
-                    frame.dispose();
+                    dispose();
                 }
 
             }

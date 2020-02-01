@@ -64,11 +64,20 @@ class RegisterUI extends JFrame{
                     //send mail with datas to activate the account?
                     new LoggedInUI();
 
-                    frame.setVisible(false);
-                    frame.dispose();
+                    setVisible(false);
+                    dispose();
 
-                } else
-                    JOptionPane.showMessageDialog(rootPane, "Something went wrong");
+                } else {
+                    if (JOptionPane.showConfirmDialog(rootPane,
+                            "Back to log in?", "Something went wrong",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                        new LoginUI();
+                        dispose();
+                    } else{
+                        JOptionPane.showMessageDialog(rootPane, "Insert valid data");
+                    }
+                }
             }
         });
         System.out.println(retrievePassOnClick[0]);

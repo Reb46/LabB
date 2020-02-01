@@ -4,9 +4,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 class LoggedInUI extends JFrame {
+    public static void main (String [] args){
+        new LoggedInUI();
+    }
 
     LoggedInUI(){
-        JFrame frame = this;
         JPanel jPanelMain = new JPanel(new GridLayout(3,2));
 
         JButton jButtonStartNewGame = new JButton("Start new Game");
@@ -19,8 +21,8 @@ class LoggedInUI extends JFrame {
                 JOptionPane.showMessageDialog(null, "Redirecting");
                 new SearchNewGame();
 
-                frame.setVisible(false);
-                frame.dispose();
+                setVisible(false);
+                dispose();
             }
 
             @Override
@@ -50,8 +52,8 @@ class LoggedInUI extends JFrame {
                 //go to new UI
                 new StartNewGame();
 
-                frame.setVisible(false);
-                frame.dispose();
+                setVisible(false);
+                dispose();
 
 
             }
