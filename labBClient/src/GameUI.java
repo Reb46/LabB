@@ -1,13 +1,14 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.StringTokenizer;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 class GameUI extends JFrame{
     private boolean myTurn = true;
@@ -19,7 +20,7 @@ class GameUI extends JFrame{
     private String playerActive;
     private int money;
     private int [] moneyA;
-
+    private Timer timerFive, timerTen;
 
     public static void main (String [] arg) throws IOException {
 
@@ -29,11 +30,56 @@ class GameUI extends JFrame{
 
 
     GameUI () throws IOException {
-
+        AtomicBoolean isExpired = new AtomicBoolean(false);
+        int delayFive = 5000;
+        int delayTen = 10000;
+        boolean jolly = false;
         firstTurn = true; // game.isFirstTurn() //da server
         moneyA = new int[3];
         int playern = whichPlayer();
         money = moneyA[playern-1];
+
+
+        //secret word
+        String secretWord = "il cielo è limpido"; //getter from game
+        int wLength = secretWord.length();
+        int index = 0;
+        cSecretWord = new char[wLength];
+        //pannels
+        //player and player scores
+        JPanel jPanelWest = new JPanel(new GridLayout(3,2));
+
+        //Secret Word label
+        JPanel jPanelCenter = new JPanel(new GridLayout(4,15));
+
+        //action buttons (per ora)
+        JPanel jPanelSouth = new JPanel(new GridLayout(2,2));
+
+        //center Big Box
+        JPanel jPanelCenterContainer = new JPanel(new GridLayout(2,2));
+
+
+        //inside jPanelCenterContainer 3rd box
+        playerActive = "player xxx"; //tipo Player e inserire un getPlayerPlaying() per ottenere il giocatore attivo
+        String movePlayerX = "Turning the wheel"; //getPlayerXMove() da la mossa e il risultato della stessa
+        JPanel jPanelPlayerMoves = new JPanel(new BorderLayout());
+        JTextField jTextFieldPlayerPlaying = new JTextField("Player active: " /*+playerX*/);
+        JTextArea textArea = new JTextArea(5, 20);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        textArea.setEditable(false);
+        textArea.append(movePlayerX);
+
+        //panel Left
+        JLabel player1 = new JLabel("Player 1"); //get players
+        JLabel player2 = new JLabel("Player 2");
+        JLabel player3 = new JLabel("Player 3");
+        JTextField jTextField1 = new JTextField("Points: " + moneyA[0]); //get x point
+        JTextField jTextField2 = new JTextField("Points: " + moneyA[0]);
+        JTextField jTextField3 = new JTextField("Points: " + moneyA[0]);
+
+        //Wheel image initializer
+        BufferedImage image = ImageIO.read(new File("ruotadellafortuna.png"));
+        JLabel imageLB = new JLabel(new ImageIcon(image));
 
         //buttons
         JButton answerButton = new JButton("Answer");
@@ -42,35 +88,53 @@ class GameUI extends JFrame{
         JButton wheelButton = new JButton("Spin the Wheel");
         JCheckBox jollyBox = new JCheckBox("Check to use Jolly");
 
-        //secret word
-        String secretWord = "il cielo è limpido"; //getter from game
-        int wLength = secretWord.length();
-        int index = 0;
-        cSecretWord = new char[wLength];
-        if (firstTurn){
-            disableButtons(answerButton, passButton, vowelButton);
-            for (int i = 0; i < 3; i++) {
-                moneyA[i] = 0;
-            }
-            if (secretWord != null) {
-                StringTokenizer tokenizer = new StringTokenizer(secretWord, " ");
-                nWords = tokenizer.countTokens();
-                cSecretWord = new char[wLength];
-                charsRelatedValues = new boolean[wLength];
+        //action listener per timer
+        ActionListener actionTimeOutFive = actionEvent -> {
+            isExpired.set(true);
+            JOptionPane.showMessageDialog(null, "Time expired");
+            timerFive.stop();
+            //inserire check jolly
+            jollyCheck(jollyBox);
+        };
+        ActionListener actionTimeOutTen = actionEvent -> {
+            isExpired.set(true);
 
-                for (int i = 0; i < wLength; i++) {
-                    char c = secretWord.charAt(i);
-                    cSecretWord[i] = c;
+            JOptionPane.showMessageDialog(null, "Time expired");
+            //inserire check jolly
+            timerTen.stop();
+            jollyCheck(jollyBox);
+        };
 
-                    if (c == ' ')
-                        charsRelatedValues[i] = true;
-                    else if (!isVowel(c)) {
-                        charsRelatedValues[i] = false;
-                    } else
-                        charsRelatedValues[i] = false;
 
+
+        if (myTurn){
+            timerFive = new Timer(delayFive, actionTimeOutFive);
+            if (firstTurn ){
+                disableButtons(answerButton, passButton, vowelButton);
+                for (int i = 0; i < 3; i++) {
+                    moneyA[i] = 0;
+                }
+                if (secretWord != null) {
+                    StringTokenizer tokenizer = new StringTokenizer(secretWord, " ");
+                    nWords = tokenizer.countTokens();
+                    cSecretWord = new char[wLength];
+                    charsRelatedValues = new boolean[wLength];
+
+                    for (int i = 0; i < wLength; i++) {
+                        char c = secretWord.charAt(i);
+                        cSecretWord[i] = c;
+
+                        if (c == ' ')
+                            charsRelatedValues[i] = true;
+                        else if (!isVowel(c)) {
+                            charsRelatedValues[i] = false;
+                        } else
+                            charsRelatedValues[i] = false;
+
+                    }
                 }
             }
+            timerFive.start();
         }
 
 
@@ -87,11 +151,6 @@ class GameUI extends JFrame{
             JOptionPane.showMessageDialog(null, "All consonat found!");
         }
 
-        //Wheel image initializer
-        BufferedImage image = ImageIO.read(new File("ruotadellafortuna.png"));
-        JLabel imageLB = new JLabel(new ImageIcon(image));
-
-
 
 
         if (!myTurn) {
@@ -101,41 +160,25 @@ class GameUI extends JFrame{
         answerButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-
+                timerFive.stop();
+                timerTen = new Timer(delayTen, actionTimeOutFive);
 
                 if (myTurn && !firstTurn){
                     //swing timer 10sec
                     String answer = JOptionPane.showInputDialog("Write the Answer");
+                    timerTen.start();
                     if (answer.equals(secretWord)){
                         //set winning stuf
-
+                        timerTen.stop();
                         JOptionPane.showMessageDialog(null, "You WIN!");
-
+                        //new round
                     }
                     else {
-                        //inserire check jolly
-                        if (jollyBox.isSelected()) {
-                            //check se possiede un jolly
-                            /* if(possiede jolly){
-                                    JOptionPane.showMessageDialog(null, "Wrong Answer, using Jolly");
-                                    changeTurn(true);//override a stesso player
-                                }
-                                else{
-                                  //nextplayer
-                                    changeTurn();
-                                    JOptionPane.showMessageDialog(null, "Next Player");
-                                    }
-                                */
-
-                        }  else{
-                            //nextplayer
-                            changeTurn();
-                            JOptionPane.showMessageDialog(null, "Next Player");
-                        }
-
+                        jollyCheck(jollyBox);
                     }
                 }
                 else if (firstTurn) {
+                    timerFive.restart();
                     JOptionPane.showMessageDialog(null, "You can't give the answer in the first turn");
 
                 } else
@@ -171,28 +214,14 @@ class GameUI extends JFrame{
 
 
                 if (myTurn){
-                    //String result = metodo Spintheweel
+                    timerFive.stop();
+                    //String result = metodo Spinthewheel
                     String result = "1000";
                     JOptionPane.showMessageDialog(null, "Result");
 
                     if (result.equals("PASS")){
-                        if(jollyBox.isSelected()) {
-                           /* if(possiede jolly){
-                                    JOptionPane.showMessageDialog(null, "Wrong Answer, using Jolly");
-                                    changeTurn(true);//override a stesso player
-                                }
-                                else{
-                                  //nextplayer
-                                    changeTurn();
-                                    JOptionPane.showMessageDialog(null, "Next Player");
-                                    }
-                            */
-                            JOptionPane.showMessageDialog(null, "Passing Turn");
-                        } else {
-                            //nextplayer
-                            changeTurn();
-                            JOptionPane.showMessageDialog(null, "Next Player");
-                        }
+                        jollyCheck(jollyBox);
+
                     } else if (result.equals("PERDE")) {
                         JOptionPane.showMessageDialog(null, "Passing turn");
                         changeTurn();
@@ -204,12 +233,18 @@ class GameUI extends JFrame{
                             salva;
                             else
                             do nothing;
+
                          */
 
                     }
                     else {
                         int x = Integer.parseInt(result);
+
+                        timerFive.start();
+
                         String consonantCalled = JOptionPane.showInputDialog("Write the Consonant");
+                        timerFive.stop();
+
                         int n = consonantCalled.charAt(0); //inserire metodo di ricerca n consonanti dell'array
                         //check con secret word
                         if (n>0) { //consonantCalled.charAt(0)
@@ -219,30 +254,19 @@ class GameUI extends JFrame{
                             updatePoints(money);
                             JOptionPane.showMessageDialog(null, "Gained " + resultPoints);
                             JOptionPane.showMessageDialog(null, "Select your next move");
-
+                            changeTurn(true);
                             //send points to total in db (event to change total score)
                             //new turn same player
-                        } else if(jollyBox.isSelected()) {
-                           /* if(possiede jolly){
-                                    JOptionPane.showMessageDialog(null, "Wrong Answer, using Jolly");
-                                    changeTurn(true);//override a stesso player
-                                }
-                                else{
-                                  //nextplayer
-                                    changeTurn();
-                                    JOptionPane.showMessageDialog(null, "Next Player");
-                                    }
-                            */
-                            JOptionPane.showMessageDialog(null, "Passing Turn");
                         } else {
-                            //nextplayer
-                            changeTurn();
-                            JOptionPane.showMessageDialog(null, "Next Player");
+                            timerFive.stop();
+                            jollyCheck(jollyBox);
                         }
                     }
                 }
-                else
+                else {
+                    timerFive.restart();
                     JOptionPane.showMessageDialog(null, "Wait for your turn");
+                }
 
             }
 
@@ -276,8 +300,10 @@ class GameUI extends JFrame{
                     JOptionPane.showMessageDialog(null, "Turn passed");
                     //event to db
                 }
-                else
+                else {
+                    timerFive.restart();
                     JOptionPane.showMessageDialog(null, "Wait for your turn");
+                }
 
             }
 
@@ -306,32 +332,33 @@ class GameUI extends JFrame{
         vowelButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
+                timerFive.stop();
 
                 if (myTurn && !firstTurn &&money>1000){ //inserire condizione soldi insufficenti
-
                     //-1000 punti e metodo per aggiornare punti sul server
                     money-=1000;
                     updatePoints(money);
-
                     String vowelCalled = JOptionPane.showInputDialog("Write the Vowel");
-                    //temporizzatore 5s
+                    timerFive.start();                    //temporizzatore 5s
                     if (vowelCalled.equals("a")){ //usare l'array di vocali presenti
-
+                        timerFive.stop();
                         //update
                         JOptionPane.showMessageDialog(null, "Vowel present");
-
+                        changeTurn(true);
                         //        secretWordTable(jPanelCenter, "prova uno");
 
                     } else{
-                        changeTurn();
+                        timerFive.stop();
                         JOptionPane.showMessageDialog(null, "Vowel not Present");
+                        jollyCheck(jollyBox);
                     }
 
                 }else if (firstTurn) {
                     JOptionPane.showMessageDialog(null, "You can't call a vowel in the first turn");
+                    timerFive.restart();
                 }else if (money<1000) {
                     JOptionPane.showMessageDialog(null, "Not enough points");
-
+                    timerFive.restart();
                 } else
                     JOptionPane.showMessageDialog(null, "Wait for your turn");
 
@@ -361,37 +388,7 @@ class GameUI extends JFrame{
 
 
 
-        //pannels
-        //player and player scores
-        JPanel jPanelWest = new JPanel(new GridLayout(3,2));
 
-        //Secret Word label
-        JPanel jPanelCenter = new JPanel(new GridLayout(4,15));
-
-        //action buttons (per ora)
-        JPanel jPanelSouth = new JPanel(new GridLayout(2,2));
-
-        //center Big Box
-        JPanel jPanelCenterContainer = new JPanel(new GridLayout(2,2));
-
-
-        //inside jPanelCenterContainer 3rd box
-        playerActive = "player xxx"; //tipo Player e inserire un getPlayerPlaying() per ottenere il giocatore attivo
-        String movePlayerX = "Turning the wheel"; //getPlayerXMove() da la mossa e il risultato della stessa
-        JPanel jPanelPlayerMoves = new JPanel(new BorderLayout());
-        JTextField jTextFieldPlayerPlaying = new JTextField("Player active: " /*+playerX*/);
-        JTextArea textArea = new JTextArea(5, 20);
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        textArea.setEditable(false);
-        textArea.append(movePlayerX);
-
-        //panel Left
-        JLabel player1 = new JLabel("Player 1"); //get players
-        JLabel player2 = new JLabel("Player 2");
-        JLabel player3 = new JLabel("Player 3");
-        JTextField jTextField1 = new JTextField("Points: " + moneyA[0]); //get x point
-        JTextField jTextField2 = new JTextField("Points: " + moneyA[0]);
-        JTextField jTextField3 = new JTextField("Points: " + moneyA[0]);
 
         jTextField1.setEditable(false);
         jTextField2.setEditable(false);
@@ -497,6 +494,31 @@ class GameUI extends JFrame{
         }
     }
 
+    private void jollyCheck(JCheckBox jollyBox){
+        //inserire check jolly
+        if (jollyBox.isSelected()) {
+            //check se possiede un jolly
+                            /* if(possiede jolly){
+                                    JOptionPane.showMessageDialog(null, "Wrong Answer, using Jolly");
+                                    changeTurn(true);//override a stesso player
+                                    spendiJolly;
+                                    ok = true;
+                                    //timer.start(); oppure new turn
+                                }
+                                else{
+                                  //nextplayer
+                                    changeTurn();
+                                    JOptionPane.showMessageDialog(null, "Next Player");
+                                    }
+                                */
+
+        }  else{
+            //nextplayer
+            changeTurn();
+            JOptionPane.showMessageDialog(null, "Next Player");
+        }
+    }
+
 
     private void disableButtons (JButton b, JButton b1, JButton b2, JButton b3){
         b.setEnabled(false);
@@ -586,3 +608,5 @@ class GameUI extends JFrame{
         return 1;
     }
 }
+
+
